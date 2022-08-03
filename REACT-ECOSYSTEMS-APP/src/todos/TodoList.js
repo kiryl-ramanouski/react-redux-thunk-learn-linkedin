@@ -1,15 +1,18 @@
 import React from 'react';
 
+// React-bootstrap components
+import ListGroup from 'react-bootstrap/ListGroup';
+
 // Components
-import TodoItem from './TodoItem';
+import TodoListItem from './TodoListItem';
 
 const TodoList = ({ todos }) => {
   return (
-    <div className='list-wrapper'>
-      {todos.map((todo) => {
-        <TodoItem todo={todo} />;
+    <ListGroup>
+      {todos.map((todo, i) => {
+        return <TodoListItem key={i} todo={todo} />;
       })}
-    </div>
+    </ListGroup>
   );
 };
 
