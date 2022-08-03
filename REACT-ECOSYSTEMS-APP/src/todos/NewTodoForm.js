@@ -23,7 +23,22 @@ const NewTodoForm = ({ todos, onCreatePressed }) => {
         />
         <Form.Text className='text-muted'>Add todo description</Form.Text>
       </Form.Group>
-      <Button variant='primary'>Create Todo</Button>
+      <Button
+        onClick={() => {
+          const isDuplicateText = todos.some(
+            (item) => item.text === inputValue
+          );
+          if (!isDuplicateText) {
+            onCreatePressed(inputValue);
+            setInputValue('');
+          } else {
+            alert('Todo is already exist!');
+          }
+        }}
+        variant='primary'
+      >
+        Create Todo
+      </Button>
     </Form>
   );
 };
