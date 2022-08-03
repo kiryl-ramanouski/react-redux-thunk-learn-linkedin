@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
 
+// Redux
+import { connect } from 'react-redux';
+import { createTodo } from '../actions';
+
 // React-bootstrap components
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-function NewTodoForm() {
+const NewTodoForm = ({ todos, onCreatePressed }) => {
   const [inputValue, setInputValue] = useState('');
+
   return (
     <Form className='border border-2 p-3 mb-3'>
       <Form.Group className='mb-3'>
@@ -21,6 +26,11 @@ function NewTodoForm() {
       <Button variant='primary'>Create Todo</Button>
     </Form>
   );
-}
+};
 
-export default NewTodoForm;
+const mapStateToProps = (state) => ({ todos: state.todos });
+const mapDispatchToProps = (dispatch) => ({
+  onCreatePressed: (text) => dispatch(createTodo(text)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewTodoForm);
