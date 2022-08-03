@@ -11,7 +11,7 @@ const TodoList = ({ todos }) => {
   return (
     <div className='d-flex flex-column mb-3'>
       <h1 className='text-center'>Todo List</h1>
-      <NewTodoForm className='mb-3' />
+      <NewTodoForm />
       <ListGroup className='border border-2'>
         {todos.map((todo, i) => {
           return <TodoListItem key={i} todo={todo} />;
