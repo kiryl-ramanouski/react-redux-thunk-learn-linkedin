@@ -20,8 +20,9 @@ export const todos = (state = [], action) => {
       const { text } = payload;
       return state.map((item) => {
         if (item.text === text) {
-          item.isCompleted = true;
+          return { ...item, isCompleted: true };
         }
+        return item;
       });
     }
     default:
