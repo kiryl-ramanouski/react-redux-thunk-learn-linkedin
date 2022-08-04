@@ -14,12 +14,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import TodoListItem from './TodoListItem';
 import NewTodoForm from './NewTodoForm';
 
-const TodoList = ({
-  todos = [],
-  onRemovePressed,
-  onCompletedPressed,
-  onDisplayAlertClicked,
-}) => {
+const TodoList = ({ todos = [], onRemovePressed, onCompletedPressed }) => {
   return (
     <div className='d-flex flex-column mb-3'>
       <h1 className='text-center'>Todo List</h1>
@@ -31,7 +26,7 @@ const TodoList = ({
               key={i}
               todo={todo}
               onRemovePressed={onRemovePressed}
-              onCompletedPressed={onDisplayAlertClicked}
+              onCompletedPressed={onCompletedPressed}
             />
           );
         })}
@@ -44,7 +39,6 @@ const mapStateToProps = (state) => ({ todos: state.todos });
 const mapDispatchToProps = (dispatch) => ({
   onRemovePressed: (text) => dispatch(removeTodo(text)),
   onCompletedPressed: (text) => dispatch(markTodoAsCompleted(text)),
-  onDisplayAlertClicked: (text) => dispatch(displayAlert(text)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoList);
