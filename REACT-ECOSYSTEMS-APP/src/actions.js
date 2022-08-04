@@ -10,8 +10,8 @@ export const removeTodo = (text) => ({
   payload: { text },
 });
 
-export const COMPLETE_TODO = 'COMPLETE_TODO';
-export const completeTodo = (text) => ({
-  type: COMPLETE_TODO,
+export const MARK_TODO_AS_COMPLETED = 'MARK_TODO_AS_COMPLETED';
+export const markTodoAsCompleted = (text) => ({
+  type: MARK_TODO_AS_COMPLETED,
   payload: { text },
 });
