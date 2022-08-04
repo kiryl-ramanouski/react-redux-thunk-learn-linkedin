@@ -2,7 +2,7 @@ import React from 'react';
 
 // Redux
 import { connect } from 'react-redux';
-import { removeTodo } from '../actions';
+import { removeTodo, markTodoAsCompleted } from '../actions';
 
 // React-bootstrap components
 import ListGroup from 'react-bootstrap/ListGroup';
@@ -11,7 +11,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import TodoListItem from './TodoListItem';
 import NewTodoForm from './NewTodoForm';
 
-const TodoList = ({ todos = [], onRemovePressed }) => {
+const TodoList = ({ todos = [], onRemovePressed, onCompletedPressed }) => {
   return (
     <div className='d-flex flex-column mb-3'>
       <h1 className='text-center'>Todo List</h1>
@@ -23,6 +23,7 @@ const TodoList = ({ todos = [], onRemovePressed }) => {
               key={i}
               todo={todo}
               onRemovePressed={onRemovePressed}
+              onCompletedPressed={onCompletedPressed}
             />
           );
         })}
@@ -34,6 +35,7 @@ const TodoList = ({ todos = [], onRemovePressed }) => {
 const mapStateToProps = (state) => ({ todos: state.todos });
 const mapDispatchToProps = (dispatch) => ({
   onRemovePressed: (text) => dispatch(removeTodo(text)),
+  onCompletedPressed: (text) => dispatch(markTodoAsCompleted(text)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoList);
