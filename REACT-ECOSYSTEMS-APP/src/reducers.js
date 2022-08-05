@@ -39,11 +39,11 @@ export const todos = (state = [], action) => {
     }
     case MARK_TODO_AS_COMPLETED: {
       const { text } = payload;
-      return state.map((item) => {
-        if (item.text === text) {
-          return { ...item, isCompleted: true };
+      return state.map((todo) => {
+        if (todo.text === text) {
+          return { ...todo, isCompleted: true };
         }
-        return item;
+        return todo;
       });
     }
     default:
