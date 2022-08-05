@@ -11,8 +11,8 @@ import { loadTodos } from '../thunks';
 import ListGroup from 'react-bootstrap/ListGroup';
 
 // Components
-import TodoListItem from './TodoListItem';
 import NewTodoForm from './NewTodoForm';
+import TodoListItem from './TodoListItem';
 
 const TodoList = ({
   todos = [],
@@ -51,6 +51,7 @@ const mapStateToProps = (state) => ({
   isLoading: state.isLoading,
   todos: state.todos,
 });
+
 const mapDispatchToProps = (dispatch) => ({
   startLoadingTodos: () => dispatch(loadTodos()),
   onRemovePressed: (text) => dispatch(removeTodo(text)),
