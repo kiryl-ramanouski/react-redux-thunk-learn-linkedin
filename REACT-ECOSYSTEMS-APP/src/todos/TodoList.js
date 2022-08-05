@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 // Redux
 import { connect } from 'react-redux';
 import { removeTodo, markTodoAsCompleted } from '../actions';
 
 // Redux-Thunk
-import { displayAlert } from '../thunks';
+import { loadTodos } from '../thunks';
 
 // React-bootstrap components
 import ListGroup from 'react-bootstrap/ListGroup';
@@ -14,8 +14,19 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import TodoListItem from './TodoListItem';
 import NewTodoForm from './NewTodoForm';
 
-const TodoList = ({ todos = [], onRemovePressed, onCompletedPressed }) => {
-  return (
+const TodoList = ({
+  todos = [],
+  onRemovePressed,
+  onCompletedPressed,
+  isLoading,
+  startLoadingTodos,
+}) => {
+  useEffect(() => {
+    startLoadingTodos();
+  }, []);
+
+  const loadingMessage = <h1>Loading todos...</h1>;
+  const content = (
     <div className='d-flex flex-column mb-3'>
       <h1 className='text-center'>Todo List</h1>
       <NewTodoForm />
@@ -33,10 +44,15 @@ const TodoList = ({ todos = [], onRemovePressed, onCompletedPressed }) => {
       </ListGroup>
     </div>
   );
+  return isLoading ? loadingMessage : content;
 };
 
-const mapStateToProps = (state) => ({ todos: state.todos });
+const mapStateToProps = (state) => ({
+  isLoading: state.isLoading,
+  todos: state.todos,
+});
 const mapDispatchToProps = (dispatch) => ({
+  startLoadingTodos: () => dispatch(loadTodos()),
   onRemovePressed: (text) => dispatch(removeTodo(text)),
   onCompletedPressed: (text) => dispatch(markTodoAsCompleted(text)),
 });
