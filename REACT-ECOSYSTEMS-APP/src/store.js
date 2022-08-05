@@ -10,17 +10,17 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 // Reducers
-import { isLoading, todos } from './reducers';
+import { todos, isLoading } from './reducers';
 
 const reducers = {
-  isLoading,
   todos,
+  isLoading,
 };
 
 const persistConfig = {
-  key: root,
+  key: 'root',
   storage,
-  stateREconciler: autoMergeLevel2,
+  stateReconciler: autoMergeLevel2,
 };
 
 const rootReducer = combineReducers(reducers);
