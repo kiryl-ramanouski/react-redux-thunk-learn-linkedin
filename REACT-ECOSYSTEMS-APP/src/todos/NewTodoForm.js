@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 
 // Redux
 import { connect } from 'react-redux';
-import { createTodo } from '../actions';
+
+// Thunks
+import { addTodoRequest } from '../thunks';
 
 // React-bootstrap components
 import Button from 'react-bootstrap/Button';
@@ -45,7 +47,7 @@ const NewTodoForm = ({ todos, onCreatePressed }) => {
 
 const mapStateToProps = (state) => ({ todos: state.todos });
 const mapDispatchToProps = (dispatch) => ({
-  onCreatePressed: (text) => dispatch(createTodo(text)),
+  onCreatePressed: (text) => dispatch(addTodoRequest(text)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewTodoForm);
