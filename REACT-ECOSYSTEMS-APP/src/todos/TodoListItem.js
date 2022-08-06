@@ -18,7 +18,7 @@ const TodoListItem = ({ todo, onRemovePressed, onCompletedPressed }) => {
             Completed
           </Button>
         )}
-        <Button onClick={() => onRemovePressed(todo.text)} variant='danger'>
+        <Button onClick={() => onRemovePressed(todo.id)} variant='danger'>
           Remove
         </Button>
       </ButtonGroup>
