@@ -1,5 +1,6 @@
 import {
   createTodo,
+  removeTodo,
   loadTodosInProgress,
   loadTodosSuccess,
   loadTodosFailure,
@@ -30,6 +31,18 @@ export const addTodoRequest = (text) => async (dispatch) => {
     });
     const todo = await response.json();
     dispatch(createTodo(todo));
+  } catch (error) {
+    dispatch(displayAlert(error));
+  }
+};
+
+export const removeTodoRequest = (id) => async (dispatch) => {
+  try {
+    const response = await fetch(`http://localhost:8080/todos/${id}`, {
+      method: 'delete',
+    });
+    const removedTodo = await response.json();
+    dispatch(removeTodo(removedTodo));
   } catch (error) {
     dispatch(displayAlert(error));
   }
