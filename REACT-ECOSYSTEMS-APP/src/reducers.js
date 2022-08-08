@@ -37,7 +37,7 @@ export const todos = (state = [], action) => {
       const { todo: updatedTodo } = payload;
       return state.map((todo) => {
         if (todo.id === updatedTodo.id) {
-          return { ...todo, isCompleted: true };
+          return updatedTodo;
         }
         return todo;
       });
