@@ -24,6 +24,19 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import NewTodoForm from './NewTodoForm';
 import TodoListItem from './TodoListItem';
 
+// Styled Components
+import styled from 'styled-components';
+
+const ListWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+`;
+
+const ListHeader = styled.h3`
+  margin-top: 1rem;
+`;
+
 const TodoList = ({
   incompleteTodos,
   completedTodos,
@@ -38,10 +51,10 @@ const TodoList = ({
 
   const loadingMessage = <h1>Loading todos...</h1>;
   const content = (
-    <div className='d-flex flex-column mb-3'>
+    <ListWrapper>
       <h1 className='text-center'>Todo List</h1>
       <NewTodoForm />
-      <h3>incomplete Todos</h3>
+      <ListHeader>Incomplete Todos:</ListHeader>
       <ListGroup className='border border-2'>
         {incompleteTodos.map((todo, i) => {
           return (
@@ -54,7 +67,7 @@ const TodoList = ({
           );
         })}
       </ListGroup>
-      <h3 className='mt-3'>Completed Todos</h3>
+      <ListHeader>Completed Todos:</ListHeader>
       <ListGroup className='border border-2'>
         {completedTodos.map((todo, i) => {
           return (
@@ -67,7 +80,7 @@ const TodoList = ({
           );
         })}
       </ListGroup>
-    </div>
+    </ListWrapper>
   );
   return isLoading ? loadingMessage : content;
 };
