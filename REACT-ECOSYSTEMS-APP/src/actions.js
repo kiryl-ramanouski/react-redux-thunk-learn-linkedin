@@ -12,9 +12,9 @@ export const removeTodo = (todo) => ({
 });
 
 export const MARK_TODO_AS_COMPLETED = 'MARK_TODO_AS_COMPLETED';
-export const markTodoAsCompleted = (text) => ({
+export const markTodoAsCompleted = (todo) => ({
   type: MARK_TODO_AS_COMPLETED,
-  payload: { text },
+  payload: { todo },
 });
 
 // Thunk actions and actions-creators
