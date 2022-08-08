@@ -10,11 +10,10 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 // Reducers
-import { todos, isLoading } from './reducers';
+import { todos } from './reducers';
 
 const reducers = {
   todos,
-  isLoading,
 };
 
 const persistConfig = {
