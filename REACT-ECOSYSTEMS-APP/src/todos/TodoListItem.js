@@ -11,10 +11,7 @@ const TodoListItem = ({ todo, onRemovePressed, onCompletedPressed }) => {
       <h3>{todo.text}</h3>
       <ButtonGroup size='sm'>
         {todo.isCompleted ? null : (
-          <Button
-            onClick={() => onCompletedPressed(todo.text)}
-            variant='success'
-          >
+          <Button onClick={() => onCompletedPressed(todo.id)} variant='success'>
             Completed
           </Button>
         )}

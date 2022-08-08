@@ -2,10 +2,13 @@ import React, { useEffect } from 'react';
 
 // Redux
 import { connect } from 'react-redux';
-import { markTodoAsCompleted } from '../actions';
 
 // Redux-Thunk
-import { loadTodos, removeTodoRequest } from '../thunks';
+import {
+  loadTodos,
+  removeTodoRequest,
+  markTodoAsCompletedRequest,
+} from '../thunks';
 
 // React-bootstrap components
 import ListGroup from 'react-bootstrap/ListGroup';
@@ -55,7 +58,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   startLoadingTodos: () => dispatch(loadTodos()),
   onRemovePressed: (id) => dispatch(removeTodoRequest(id)),
-  onCompletedPressed: (text) => dispatch(markTodoAsCompleted(text)),
+  onCompletedPressed: (id) => dispatch(markTodoAsCompletedRequest(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoList);
