@@ -7,7 +7,8 @@ import ListGroup from 'react-bootstrap/ListGroup';
 
 // Styled Components
 import styled from 'styled-components';
-const TodoItemWarningBorder = styled.div`
+const TodoItemContainer = styled.div``;
+const TodoItemWarningBorder = styled(TodoItemContainer)`
   border-bottom: ${(props) =>
     new Date(props.createdAt) > new Date(Date.now() - 8640000 * 5)
       ? 'none'
@@ -15,8 +16,11 @@ const TodoItemWarningBorder = styled.div`
 `;
 
 const TodoListItem = ({ todo, onRemovePressed, onCompletedPressed }) => {
+  const Container = todo.isCompleted
+    ? TodoItemContainer
+    : TodoItemWarningBorder;
   return (
-    <TodoItemWarningBorder createdAt={todo.createdAt}>
+    <Container createdAt={todo.createdAt}>
       <ListGroup.Item className='d-flex justify-content-between align-items-center'>
         <div>
           <h3>{todo.text}</h3>
@@ -37,7 +41,7 @@ const TodoListItem = ({ todo, onRemovePressed, onCompletedPressed }) => {
           </Button>
         </ButtonGroup>
       </ListGroup.Item>
-    </TodoItemWarningBorder>
+    </Container>
   );
 };
 
