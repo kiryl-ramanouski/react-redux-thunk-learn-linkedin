@@ -6,6 +6,9 @@ import { connect } from 'react-redux';
 // Thunks
 import { addTodoRequest } from '../thunks';
 
+// Selectors
+import { getTodos } from '../selectors';
+
 // React-bootstrap components
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -45,7 +48,9 @@ const NewTodoForm = ({ todos, onCreatePressed }) => {
   );
 };
 
-const mapStateToProps = (state) => ({ todos: state.todos });
+const mapStateToProps = (state) => ({
+  todos: getTodos(state),
+});
 const mapDispatchToProps = (dispatch) => ({
   onCreatePressed: (text) => dispatch(addTodoRequest(text)),
 });

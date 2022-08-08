@@ -10,6 +10,9 @@ import {
   markTodoAsCompletedRequest,
 } from '../thunks';
 
+// Selectors
+import { getTodos, getTodosLoading } from '../selectors';
+
 // React-bootstrap components
 import ListGroup from 'react-bootstrap/ListGroup';
 
@@ -51,8 +54,8 @@ const TodoList = ({
 };
 
 const mapStateToProps = (state) => ({
-  isLoading: state.isLoading,
-  todos: state.todos,
+  isLoading: getTodosLoading(state),
+  todos: getTodos(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
