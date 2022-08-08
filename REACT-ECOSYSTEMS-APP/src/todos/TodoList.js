@@ -11,7 +11,11 @@ import {
 } from '../thunks';
 
 // Selectors
-import { getTodos, getTodosLoading } from '../selectors';
+import {
+  getTodosLoading,
+  getIncompleteTodos,
+  getCompletedTodos,
+} from '../selectors';
 
 // React-bootstrap components
 import ListGroup from 'react-bootstrap/ListGroup';
@@ -21,7 +25,8 @@ import NewTodoForm from './NewTodoForm';
 import TodoListItem from './TodoListItem';
 
 const TodoList = ({
-  todos = [],
+  incompleteTodos,
+  completedTodos,
   onRemovePressed,
   onCompletedPressed,
   isLoading,
@@ -36,8 +41,22 @@ const TodoList = ({
     <div className='d-flex flex-column mb-3'>
       <h1 className='text-center'>Todo List</h1>
       <NewTodoForm />
+      <h3>incomplete Todos</h3>
       <ListGroup className='border border-2'>
-        {todos.map((todo, i) => {
+        {incompleteTodos.map((todo, i) => {
+          return (
+            <TodoListItem
+              key={i}
+              todo={todo}
+              onRemovePressed={onRemovePressed}
+              onCompletedPressed={onCompletedPressed}
+            />
+          );
+        })}
+      </ListGroup>
+      <h3 className='mt-3'>Completed Todos</h3>
+      <ListGroup className='border border-2'>
+        {completedTodos.map((todo, i) => {
           return (
             <TodoListItem
               key={i}
@@ -55,7 +74,8 @@ const TodoList = ({
 
 const mapStateToProps = (state) => ({
   isLoading: getTodosLoading(state),
-  todos: getTodos(state),
+  completedTodos: getCompletedTodos(state),
+  incompleteTodos: getIncompleteTodos(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
