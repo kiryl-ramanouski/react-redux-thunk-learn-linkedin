@@ -19,4 +19,19 @@ describe('The todos reducer', () => {
     const actualState = todos(originalState, fakeAction);
     expect(actualState).to.deep.equal(expectedState);
   });
+
+  it('Deletes a todo, when DELETE_TODO action is received', () => {
+    const fakeTodo = {
+      text: 'Fake Todo',
+      isCompleted: false,
+    };
+    const fakeAction = {
+      type: 'REMOVE_TODO',
+      payload: { todo: fakeTodo },
+    };
+    const originalState = { isLoading: false, data: [fakeTodo] };
+    const expectedState = { isLoading: false, data: [] };
+    const actualState = todos(originalState, fakeAction);
+    expect(actualState).to.deep.equal(expectedState);
+  });
 });
