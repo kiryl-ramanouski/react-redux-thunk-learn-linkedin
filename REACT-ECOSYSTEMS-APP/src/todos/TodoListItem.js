@@ -8,11 +8,16 @@ import ListGroup from 'react-bootstrap/ListGroup';
 // Styled Components
 import styled from 'styled-components';
 const TodoItemContainer = styled.div``;
+
+export const getBorderStyleForDate = (startingDate, currentDate) =>
+  startingDate > new Date(currentDate - 86400000 * 5)
+    ? 'none'
+    : '2px solid red';
+
 const TodoItemWarningBorder = styled(TodoItemContainer)`
   border-bottom: ${(props) =>
-    new Date(props.createdAt) > new Date(Date.now() - 8640000 * 5)
-      ? 'none'
-      : '2px solid red'};
+    (getBorderStyleForDate =
+      (new Date(props.createdAt), new Date(Date.now() - 8640000 * 5)))};
 `;
 
 const TodoListItem = ({ todo, onRemovePressed, onCompletedPressed }) => {
