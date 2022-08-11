@@ -16,8 +16,10 @@ export const getBorderStyleForDate = (startingDate, currentDate) =>
 
 const TodoItemWarningBorder = styled(TodoItemContainer)`
   border-bottom: ${(props) =>
-    (getBorderStyleForDate =
-      (new Date(props.createdAt), new Date(Date.now() - 8640000 * 5)))};
+    getBorderStyleForDate(
+      new Date(props.createdAt),
+      new Date(Date.now() - 8640000 * 5)
+    )};
 `;
 
 const TodoListItem = ({ todo, onRemovePressed, onCompletedPressed }) => {
